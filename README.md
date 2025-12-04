@@ -18,36 +18,6 @@ DisceteMath_Prj/
 └── README.md
 ```
 
-## 역할 분담
-
-### Person 1: 그래프 표현 및 탐색
-- **Graph.java**
-  - 인접 행렬을 이용한 그래프 표현
-  - `addEdge()` 메서드 구현 (무가중치/가중치)
-  - `hasEdge()`, `getWeight()` 메서드 구현
-
-- **GraphTraversal.java**
-  - DFS (깊이 우선 탐색) 구현
-  - BFS (너비 우선 탐색) 구현
-  - 시작 정점: 1번 고정
-  - 인접 정점 방문 순서: 오름차순
-
-### Person 2: 파일 입출력 및 최단 경로
-- **GraphFileReader.java**
-  - `readUnweightedGraphs()`: input1.txt 읽기
-  - `readWeightedGraphs()`: input2.txt 읽기
-  - EOF까지 여러 그래프 파싱
-
-- **Dijkstra.java**
-  - Dijkstra 알고리즘 구현
-  - 최단 경로 복원 (parent 배열 이용)
-  - 시작 정점: 1번 고정
-
-### 공통: Main.java
-- 전체 실행 흐름 조율
-- 두 사람이 각자 구현한 부분을 통합
-- 출력 포맷 맞추기
-
 ## 구현 가이드
 
 ### 1. 시작하기
@@ -62,34 +32,7 @@ javac src/graph/*.java
 java -cp src graph.Main
 ```
 
-### 2. 구현 순서
-
-#### Person 1
-1. **Graph.java**의 TODO 구현
-   - `addEdge()` 메서드 (무가중치)
-   - `addEdge()` 메서드 (가중치)
-   - `hasEdge()` 메서드
-   
-2. **GraphTraversal.java**의 TODO 구현
-   - `dfsRecursive()` 메서드
-   - `bfs()` 메서드
-
-#### Person 2
-1. **GraphFileReader.java**의 TODO 구현
-   - `readUnweightedGraphs()` 메서드
-   - `readWeightedGraphs()` 메서드
-   
-2. **Dijkstra.java**의 TODO 구현
-   - `dijkstra()` 메서드
-   - `Result.getPath()` 메서드
-
-### 3. 테스트
-각자 구현한 부분을 완성한 후:
-1. 컴파일하여 에러 확인
-2. Main.java 실행하여 출력 확인
-3. 출력 형식이 요구사항과 일치하는지 검증
-
-### 4. 주의사항
+### 2. 주의사항
 - **인접 행렬 사용 필수** (인접 리스트 사용 금지)
 - **정점 번호는 1부터 시작** (배열은 1-indexed로 사용)
 - **인접 정점 방문 순서는 오름차순** (1, 2, 3, ...)
@@ -157,19 +100,6 @@ java -cp src graph.Main
 - 정점 구분자: ` – ` (공백 포함)
 - 줄바꿈 확인
 - 헤더 텍스트 정확히 일치
-
-## 협업 팁
-1. **Git 브랜치 사용**
-   - Person 1: `feature/graph-traversal`
-   - Person 2: `feature/dijkstra-io`
-   
-2. **자주 커밋하고 푸시**
-   - 작은 단위로 커밋
-   - TODO 하나 완료할 때마다 커밋 권장
-
-3. **Main.java는 마지막에 통합**
-   - 각자 구현 완료 후 함께 테스트
-   - 출력 형식 최종 검증
 
 ## 참고 자료
 - 요구사항 명세서: `요구사항_명세서.md`
