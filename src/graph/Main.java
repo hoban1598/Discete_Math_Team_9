@@ -3,19 +3,12 @@ package graph;
 import java.io.*;
 import java.util.*;
 
-/**
- * Main 클래스 - 프로그램 실행 진입점
- * 담당: 공통 (Person 1, Person 2 협업)
- * 
- * 실행 흐름:
- * 1. input1.txt 읽기 → DFS/BFS 수행 및 출력
- * 2. input2.txt 읽기 → Dijkstra 수행 및 출력
- */
+// 메인 실행 파일
 public class Main {
     
     public static void main(String[] args) {
         try {
-            // ========== Part 1: 그래프 탐방 (DFS/BFS) ==========
+            // Part 1: DFS/BFS
             System.out.println("1. 그래프 탐방 수행 결과");
             System.out.println();
             
@@ -27,12 +20,12 @@ public class Main {
                 System.out.println("그래프 [" + (i + 1) + "]");
                 System.out.println("----------------------------");
                 
-                // DFS 수행
+                // DFS
                 List<Integer> dfsResult = GraphTraversal.dfs(graph, 1);
                 System.out.println("깊이 우선 탐색");
                 System.out.println(GraphTraversal.formatPath(dfsResult));
                 
-                // BFS 수행
+                // BFS
                 List<Integer> bfsResult = GraphTraversal.bfs(graph, 1);
                 System.out.println("너비 우선 탐색");
                 System.out.println(GraphTraversal.formatPath(bfsResult));
@@ -41,7 +34,7 @@ public class Main {
                 System.out.println();
             }
             
-            // ========== Part 2: 최단 경로 (Dijkstra) ==========
+            // Part 2: Dijkstra
             System.out.println("2. 최단 경로 구하기 수행 결과");
             System.out.println();
             
@@ -54,10 +47,9 @@ public class Main {
                 System.out.println("----------------------------");
                 System.out.println("시작점: 1");
                 
-                // Dijkstra 수행
                 Dijkstra.Result result = Dijkstra.dijkstra(graph, 1);
                 
-                // 각 정점까지의 최단 경로 출력
+                // 각 정점까지 최단 경로 출력
                 for (int v = 2; v <= graph.getNumVertices(); v++) {
                     List<Integer> path = result.getPath(v);
                     String pathStr = Dijkstra.formatPath(path);
