@@ -13,6 +13,7 @@ DisceteMath_Prj/
 │       ├── GraphTraversal.java     # DFS/BFS 구현
 │       ├── Dijkstra.java           # Dijkstra 알고리즘 구현
 │       └── GraphFileReader.java    # 파일 입출력
+├── graph-program.jar                # 실행 가능한 JAR 파일 (7.2KB)
 ├── input1.txt                       # 무가중치 그래프 입력 (DFS/BFS용)
 ├── input2.txt                       # 가중치 그래프 입력 (Dijkstra용)
 └── README.md
@@ -51,15 +52,41 @@ DisceteMath_Prj/
 ## 구현 가이드
 
 ### 1. 시작하기
+
+#### 방법 1: JAR 파일 실행 (권장)
+```bash
+# JAR 파일과 input 파일들을 같은 디렉터리에 배치
+프로젝트폴더/
+├── graph-program.jar
+├── input1.txt
+└── input2.txt
+
+# 실행
+java -jar graph-program.jar
+```
+
+#### 방법 2: 소스 코드 컴파일 및 실행
 ```bash
 # 프로젝트 디렉터리로 이동
 cd /Users/david/Workspace/DisceteMath_Prj
 
 # 컴파일
-javac src/graph/*.java
+javac -d . src/graph/*.java
 
 # 실행 (input1.txt, input2.txt가 현재 디렉터리에 있어야 함)
-java -cp src graph.Main
+java graph.Main
+```
+
+#### 방법 3: JAR 파일 직접 생성
+```bash
+# 컴파일 먼저 수행 (방법 2 참고)
+javac -d . src/graph/*.java
+
+# JAR 생성 (graph-program.jar)
+jar cvfe graph-program.jar graph.Main graph/*.class
+
+# 실행
+java -jar graph-program.jar
 ```
 
 ### 2. 구현 순서
@@ -150,8 +177,9 @@ java -cp src graph.Main
 - 클래스 이름과 파일 이름 일치 확인
 
 ### 실행 오류
-- 파일 위치 확인: input1.txt, input2.txt가 실행 디렉터리에 있어야 함
-- 파일 형식 확인: 정점 개수와 실제 정점 정보가 일치해야 함
+- **파일 위치 확인**: input1.txt, input2.txt가 JAR 파일이나 실행 디렉터리와 같은 위치에 있어야 함
+- **파일 형식 확인**: 정점 개수와 실제 정점 정보가 일치해야 함
+- **JAR 실행 시**: `java -jar graph-program.jar` 명령어 사용
 
 ### 출력 형식 불일치
 - 정점 구분자: ` – ` (공백 포함)
